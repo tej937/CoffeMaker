@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu">
+
+     <Button
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="logout"
+         android:id="@+id/logout"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bt"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:visibility="visible"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="124dp"
+            android:layout_height="46dp"
+            android:layout_gravity="center"
+            android:text="Brew Timer" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/ct"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:visibility="visible"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Coffee Tracker" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bg"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginTop="350dp"
+
+        android:visibility="visible"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Brew Guides" />
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cd"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginTop="470dp"
+        android:visibility="visible"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Coffee Dictionary" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cc"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginTop="600dp"
+        android:visibility="visible"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Coffee Cupping" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cr"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="350dp"
+        android:visibility="visible"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:text="Coffee Recipies" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/rc"
+        android:layout_width="125dp"
+        android:layout_height="250dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="460dp"
+        android:visibility="visible"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Row Cards" />
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

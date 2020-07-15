@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".RegistrationPage">
+
+    <TextView
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="125dp"
+        android:id="@+id/textView8"
+        android:textSize="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registration" />
+
+
+
+    <EditText
+
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/firstName"
+        android:layout_width="254dp"
+        android:layout_height="53dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="69dp" />
+
+    <EditText
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/lastName"
+        android:layout_width="254dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Last Name"
+        tools:layout_editor_absoluteX="71dp"
+        tools:layout_editor_absoluteY="148dp" />
+
+    <EditText
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/address"
+        android:layout_width="248dp"
+        android:layout_height="46dp"
+        android:hint="Postal Address"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="298dp" />
+
+    <EditText
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/email"
+        android:layout_width="245dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="Email ID"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="76dp"
+        tools:layout_editor_absoluteY="218dp" />
+
+    <EditText
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/password"
+        android:layout_width="245dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="76dp"
+        tools:layout_editor_absoluteY="374dp" />
+
+    <EditText
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/confirmpassword"
+        android:layout_width="242dp"
+        android:layout_height="54dp"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="79dp"
+        tools:layout_editor_absoluteY="453dp" />
+
+    <Button
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        tools:layout_editor_absoluteX="146dp"
+        tools:layout_editor_absoluteY="555dp" />
+
+
+</LinearLayout>
