@@ -16,6 +16,7 @@
             android:src="@drawable/back"
             android:id="@+id/back"/>
         <TextView
+            android:id="@+id/method_name"
             android:fontFamily="@font/josefinsansregular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,6 +44,7 @@
                 android:progressTint="@color/GreenColor"
                 tools:targetApi="lollipop" />
                 <ImageView
+                    android:id="@+id/method_photo"
                     android:src="@drawable/aeropress"
                     android:layout_width="140dp"
                     android:layout_height="140dp"

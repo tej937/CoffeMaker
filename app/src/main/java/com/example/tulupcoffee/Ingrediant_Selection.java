@@ -9,14 +9,14 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.shawnlin.numberpicker.NumberPicker;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -24,17 +24,34 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Random;
 
-public class AeroPress extends AppCompatActivity {
+public class Ingrediant_Selection extends AppCompatActivity {
 
     Button dose,ratio,water_amt;
     RelativeLayout start_recipe;
     Dialog myDialog;
-
+    ImageView imageView,back;
+    TextView method;
+    String flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aero_press);
+        setContentView(R.layout.activity_ingredient_selector);
         initialise();
+        Intent intent = getIntent();
+        flag = intent.getStringExtra("Flag");
+        if(flag.equals("1")){
+            imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.aeropress));
+            method.setText("AeroPress");
+        }else if(flag.equals("2")){
+            imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.frenchpress));
+            method.setText("FrenchPress");
+        }else if(flag.equals("3")){
+            imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.v60));
+            method.setText("v60 PourOver");
+        }else if(flag.equals("4")){
+            imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.mokapot));
+            method.setText("Moka Pot");
+        }
         //calculate();
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -51,7 +68,7 @@ public class AeroPress extends AppCompatActivity {
                 submit = myDialog.findViewById(R.id.submit);
                 myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 myDialog.show();
-                final String[] numbers = {"05","10","15","20","25","30","35","40","45","50"};
+                final String[] numbers = {"00","05","10","15","20","25","30","35","40","45","50"};
                 numberPicker.setMinValue(0);
                 numberPicker.setMaxValue(numbers.length-1);
                 numberPicker.setDisplayedValues(numbers);
@@ -130,15 +147,40 @@ public class AeroPress extends AppCompatActivity {
         start_recipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AeroPress.this,NewRecipe.class);
+                Intent intent = new Intent(Ingrediant_Selection.this,NewRecipe.class);
                 intent.putExtra("dose",dose.getText());
                 intent.putExtra("water_amt",water_amt.getText());
+                intent.putExtra("Flag",flag);
                 startActivity(intent);
+                finish();
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Ingrediant_Selection.this,BrewingMethod.class));
                 finish();
             }
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Ingrediant_Selection.this,BrewingMethod.class));
+        finish();
+    }
+
+    private void initialise() {
+        dose = findViewById(R.id.coffee_dose);
+        ratio = findViewById(R.id.ratio);
+        water_amt = findViewById(R.id.water_amt);
+        start_recipe = findViewById(R.id.start);
+        myDialog = new Dialog(this);
+        method = findViewById(R.id.method_name);
+        imageView = findViewById(R.id.coffee_image);
+        back = findViewById(R.id.back);
+
+    }
     private void calculate() {
         float dos = Integer.parseInt(dose.getText().toString().substring(0,2));
         float wat = Integer.parseInt(water_amt.getText().toString().substring(0,3));
@@ -177,12 +219,5 @@ public class AeroPress extends AppCompatActivity {
         int[] fractionElements = { num / gcd, den / gcd };
         return fractionElements;
     }
-    private void initialise() {
-        dose = findViewById(R.id.coffee_dose);
-        ratio = findViewById(R.id.ratio);
-        water_amt = findViewById(R.id.water_amt);
-        start_recipe = findViewById(R.id.start);
-        myDialog = new Dialog(this);
 
-    }
 }

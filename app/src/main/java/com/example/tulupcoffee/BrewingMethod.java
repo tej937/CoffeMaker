@@ -2,7 +2,6 @@ package com.example.tulupcoffee;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,13 +9,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import java.text.BreakIterator;
-
 public class BrewingMethod extends AppCompatActivity {
 
     LinearLayout aeropress,french,v60,moka_pota;
     ImageView back;
-
+    int flag = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,29 +24,38 @@ public class BrewingMethod extends AppCompatActivity {
         aeropress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BrewingMethod.this,AeroPress.class));
+                flag = 1;
+                Intent intent =new Intent(BrewingMethod.this, Ingrediant_Selection.class);
+                intent.putExtra("Flag",flag+"");
+                startActivity(intent);
                 finish();
             }
         });
         french.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BrewingMethod.this,FrenchPress.class));
-                finish();
+                flag = 2;
+                Intent intent =new Intent(BrewingMethod.this,Ingrediant_Selection.class);
+                intent.putExtra("Flag",flag+"");
+                startActivity(intent); finish();
             }
         });
         v60.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BrewingMethod.this,PourOver.class));
-                finish();
+                flag = 3;
+                Intent intent =new Intent(BrewingMethod.this,Ingrediant_Selection.class);
+                intent.putExtra("Flag",flag+"");
+                startActivity(intent); finish();
             }
         });
         moka_pota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BrewingMethod.this,MokaPota.class));
-                finish();
+                flag = 4;
+                Intent intent =new Intent(BrewingMethod.this,Ingrediant_Selection.class);
+                intent.putExtra("Flag",flag+"");
+                startActivity(intent); finish();
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
@@ -66,5 +72,11 @@ public class BrewingMethod extends AppCompatActivity {
         v60 = findViewById(R.id.pourover);
         moka_pota = findViewById(R.id.moka_pot);
         back = findViewById(R.id.back);
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(BrewingMethod.this,Menu.class));
+        finish();
     }
 }

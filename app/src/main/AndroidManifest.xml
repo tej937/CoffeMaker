@@ -11,10 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".CompleteCoffee"></activity>
         <activity android:name=".NewRecipe" />
-        <activity android:name=".MokaPota" />
-        <activity android:name=".PourOver" />
-        <activity android:name=".FrenchPress" />
-        <activity android:name=".AeroPress" />
+        <activity android:name=".Ingrediant_Selection" />
         <activity android:name=".BrewingMethod" />
         <activity android:name=".RegistrationPage" />
         <activity android:name=".Menu" />
