@@ -34,6 +34,19 @@
             android:layout_height="180dp"
             android:src="@drawable/aeropress"
             />
+        <TextView
+            android:id="@+id/grind_size"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/josefinsansregular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grind Size: Medium"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:padding="20dp"
+            android:textColor="@color/Black"
+            android:layout_gravity="center_horizontal"/>
+
         <LinearLayout
             android:layout_marginTop="30dp"
             android:orientation="horizontal"
@@ -126,21 +139,6 @@
                     android:layout_gravity="center_horizontal"/>
             </LinearLayout>
         </LinearLayout>
-        <Button
-            android:fontFamily="@font/josefinsansregular"
-            android:id="@+id/last_recipe"
-            android:layout_width="350dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/roundbutton"
-            android:text="Last Recipe"
-            android:textSize="25sp"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:textColor="@color/GreenColor"
-            android:padding="20dp"
-            />
         <RelativeLayout
             android:id="@+id/start"
             android:layout_width="200dp"

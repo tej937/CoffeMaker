@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -18,11 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.shawnlin.numberpicker.NumberPicker;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.util.Random;
 
 public class Ingrediant_Selection extends AppCompatActivity {
 
@@ -30,7 +24,7 @@ public class Ingrediant_Selection extends AppCompatActivity {
     RelativeLayout start_recipe;
     Dialog myDialog;
     ImageView imageView,back;
-    TextView method;
+    TextView method,grind;
     String flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +36,19 @@ public class Ingrediant_Selection extends AppCompatActivity {
         if(flag.equals("1")){
             imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.aeropress));
             method.setText("AeroPress");
+            grind.setText("Grind size: Medium");
         }else if(flag.equals("2")){
             imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.frenchpress));
             method.setText("FrenchPress");
+            grind.setText("Grind size: Coarse");
         }else if(flag.equals("3")){
             imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.v60));
             method.setText("v60 PourOver");
+            grind.setText("Grind size: Not Given");
         }else if(flag.equals("4")){
             imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.mokapot));
             method.setText("Moka Pot");
+            grind.setText("Grind size: Not Given");
         }
         //calculate();
         ActionBar actionBar = getSupportActionBar();
@@ -103,11 +101,8 @@ public class Ingrediant_Selection extends AppCompatActivity {
                 submit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ratio.setText((numbers[numberPicker.getValue()]+""));
-                        int rat = Integer.parseInt(ratio.getText().toString().substring(2));
-                        int dos = Integer.parseInt(dose.getText().toString().substring(0,2));
-                        int new_wat = rat*dos;
-                        water_amt.setText(new_wat+"ml");
+                        ratio.setText((numbers[numberPicker.getValue()]));
+                        calculate();
                         myDialog.dismiss();
                     }
                 });
@@ -138,7 +133,11 @@ public class Ingrediant_Selection extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         water_amt.setText((numbers[numberPicker.getValue()]+"ml"));
-                        calculate();
+                        int rat = Integer.parseInt(ratio.getText().toString().substring(2));
+                        int wat = Integer.parseInt(water_amt.getText().toString().substring(0,3));
+                        //Toast.makeText(Ingrediant_Selection.this, "Water"+wat, Toast.LENGTH_SHORT).show();
+                        int new_dos = wat/rat;
+                        dose.setText(new_dos+"gms");
                         myDialog.dismiss();
                     }
                 });
@@ -179,45 +178,50 @@ public class Ingrediant_Selection extends AppCompatActivity {
         method = findViewById(R.id.method_name);
         imageView = findViewById(R.id.coffee_image);
         back = findViewById(R.id.back);
-
+        grind = findViewById(R.id.grind_size);
     }
     private void calculate() {
-        float dos = Integer.parseInt(dose.getText().toString().substring(0,2));
-        float wat = Integer.parseInt(water_amt.getText().toString().substring(0,3));
-        float fraction_answer = dos/wat;
-        DecimalFormat df = new DecimalFormat("#.####");
-        df.setRoundingMode(RoundingMode.CEILING);
-        int[] result = convertToFraction(""+fraction_answer);
-        result[0] = 1;
-        if(result[1]>20){
-            Random random = new Random();
-            result[1] = random.nextInt(10 - 1) +1;
-        }
-        ratio.setText(result[0]+":"+result[1]);
-    }
+        int rat = Integer.parseInt(ratio.getText().toString().substring(2));
+        int dos = Integer.parseInt(dose.getText().toString().substring(0,2));
+        int new_wat = rat*dos;
+        //Toast.makeText(this, "Ratio"+rat+"Dose"+dos+"New Water"+new_wat, Toast.LENGTH_SHORT).show();
+        water_amt.setText(new_wat+"ml");}
+//        float dos = Integer.parseInt(dose.getText().toString().substring(0,2));
+//        float wat = Integer.parseInt(water_amt.getText().toString().substring(0,3));
+//        float fraction_answer = dos/wat;
+//        DecimalFormat df = new DecimalFormat("#.####");
+//        df.setRoundingMode(RoundingMode.CEILING);
+//        int[] result = convertToFraction(""+fraction_answer);
+//        result[0] = 1;
+//        if(result[1]>20){
+//            Random random = new Random();
+//            result[1] = random.nextInt(10 - 1) +1;
+//        }
+//        ratio.setText(result[0]+":"+result[1]);
 
-    int[] convertToFraction(String numberStr) {
-        String[] parts;
-        try {
-            BigDecimal number = new BigDecimal(numberStr);
-            parts = number.toString().split("\\.");
-            if (parts.length < 2)
-                Log.d("Error","Error: Please ensure that"+" the entered value has a decimal.");
-        } catch (NumberFormatException e) {
-            Log.d("Error","Number Format Exception");
-        } catch (ArrayIndexOutOfBoundsException ae){
-            Log.d("Error","ArrayIndexOutOfBoundsException");
-        }
-        BigDecimal number = new BigDecimal(numberStr);
-        parts = number.toString().split("\\.");
-        BigDecimal den = BigDecimal.TEN.pow(parts[1].length());
-        BigDecimal num = (new BigDecimal(parts[0]).multiply(den)).add(new BigDecimal(parts[1]));
-        return reduceFraction(num.intValue(), den.intValue());
-    }
-    static int[] reduceFraction(int num, int den) {
-        int gcd = BigInteger.valueOf(num).gcd(BigInteger.valueOf(den)).intValue();
-        int[] fractionElements = { num / gcd, den / gcd };
-        return fractionElements;
-    }
+
+//    int[] convertToFraction(String numberStr) {
+//        String[] parts;
+//        try {
+//            BigDecimal number = new BigDecimal(numberStr);
+//            parts = number.toString().split("\\.");
+//            if (parts.length < 2)
+//                Log.d("Error","Error: Please ensure that"+" the entered value has a decimal.");
+//        } catch (NumberFormatException e) {
+//            Log.d("Error","Number Format Exception");
+//        } catch (ArrayIndexOutOfBoundsException ae){
+//            Log.d("Error","ArrayIndexOutOfBoundsException");
+//        }
+//        BigDecimal number = new BigDecimal(numberStr);
+//        parts = number.toString().split("\\.");
+//        BigDecimal den = BigDecimal.TEN.pow(parts[1].length());
+//        BigDecimal num = (new BigDecimal(parts[0]).multiply(den)).add(new BigDecimal(parts[1]));
+//        return reduceFraction(num.intValue(), den.intValue());
+//    }
+//    static int[] reduceFraction(int num, int den) {
+//        int gcd = BigInteger.valueOf(num).gcd(BigInteger.valueOf(den)).intValue();
+//        int[] fractionElements = { num / gcd, den / gcd };
+//        return fractionElements;
+//    }
 
 }

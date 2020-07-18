@@ -134,7 +134,7 @@ public class NewRecipe extends AppCompatActivity {
             s9.setText("Ready to sip!");
             s8.setVisibility(View.GONE);
             t1 = 5; t2 = 12; t3 = 17; t4 = 32; t5 = 52; t6 = 66; t7 = 86; t8 = 87;
-
+            //t1 = 1; t2 = 2; t3 = 3; t4 = 4; t5 = 5; t6 = 6; t7 = 7; t8 = 8;
         }else if(flag.equals("4")){
             method_name.setText("Moka Pota");
             s1.setText("No Steps found");
@@ -305,12 +305,16 @@ public class NewRecipe extends AppCompatActivity {
 //            progressAnimator.start();
             progressBar.setInterpolator(new DecelerateInterpolator());
             progressBar.setProgress((int) timeLeft);
-            Toast.makeText(NewRecipe.this, "Seconds "+ timeLeft, Toast.LENGTH_SHORT).show();
+            Toast.makeText(NewRecipe.this,timeLeft+"S", Toast.LENGTH_SHORT).show();
             steps_changer();
         }
         @Override
         public void onFinish() {
-            progressBar.setProgress(118);
+            progressBar.setProgress((int) t8);
+            Intent intent = new Intent(NewRecipe.this,CompleteCoffee.class);
+            intent.putExtra("Flag",""+flag);
+            startActivity(intent);
+            finish();
             //timeLeft = 1;
             //time = 0;
             // Toast.makeText(NewRecipe.this, "Flag "+flag, Toast.LENGTH_SHORT).show();
